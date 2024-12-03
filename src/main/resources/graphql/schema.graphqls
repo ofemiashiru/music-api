@@ -1,0 +1,21 @@
+type Artist {
+    id: ID!
+    artistName: String
+    artistGenreId: ID!
+}
+
+type ArtistInput {
+    id: ID,
+    artistName: String
+    artistGenreId: ID
+}
+
+type Genre {
+    id: ID!
+    genreName: String
+}
+
+type Query{
+    getArtists:[Artist]
+    getGenres:[Genre]
+}
