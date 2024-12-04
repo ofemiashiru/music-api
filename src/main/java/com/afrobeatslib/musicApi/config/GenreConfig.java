@@ -1,4 +1,4 @@
-package com.afrobeatslib.musicApi;
+package com.afrobeatslib.musicApi.config;
 
 import com.afrobeatslib.musicApi.model.Genre;
 import com.afrobeatslib.musicApi.repository.GenreRepository;
