@@ -1,21 +1,24 @@
 package com.afrobeatslib.musicApi.dto;
 
+import java.util.Set;
+
+import com.afrobeatslib.musicApi.model.Genre;
 
 public class ArtistInputDto {
     String id;
     String artistName;
     String artistImageUrl;
-    int artistGenreId;
+    Set<Genre> genres; 
 
     public ArtistInputDto(){
 
     }
 
-    public ArtistInputDto(String id, String artistName, String artistImageUrl, int artistGenreId){
+    public ArtistInputDto(String id, String artistName, String artistImageUrl, Set<Genre> genres){
         this.id = id;
         this.artistName = artistName;
         this.artistImageUrl = artistImageUrl;
-        this.artistGenreId = artistGenreId;
+        this.genres = genres;
     }
 
     public String getId(){
@@ -42,11 +45,11 @@ public class ArtistInputDto {
         this.artistImageUrl = newArtistImageUrl;
     }
 
-    public int getArtistGenreId(){
-        return this.artistGenreId;
+    public Set<Genre> getArtistGenres() {
+        return this.genres;
     }
 
-    public void setArtistGenreId(int newGenreId){
-        this.artistGenreId = newGenreId;
+    public void setArtistGenres(Set<Genre> newGenres) {
+        this.genres = newGenres;
     }
 }
