@@ -2,14 +2,14 @@ type Artist {
   id: ID!
   artistName: String
   artistImageUrl: String
-  artistGenreId: ID!
+  genres: [Genre]
 }
 
 type ArtistInput {
   id: ID
   artistName: String
   artistImageUrl: String
-  artistGenreId: ID
+  genres: [Genre]
 }
 
 type Genre {
