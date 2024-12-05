@@ -19,6 +19,7 @@ public class ArtistMapper {
 
         dto.setId(artist.getId());
         dto.setArtistName(artist.getArtistName());
+        dto.setArtistImageUrl(artist.getArtistImageUrl());
         dto.setArtistGenreId(artist.getArtistGenreId());
 
         return dto;
@@ -34,6 +35,7 @@ public class ArtistMapper {
 
         entity.setId(UUID.fromString(dto.getId()));
         entity.setArtistName(dto.getArtistName());
+        entity.setArtistImageUrl(dto.getArtistImageUrl());
         entity.setArtistGenreId(dto.getArtistGenreId());
 
         return entity;

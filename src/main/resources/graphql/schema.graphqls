@@ -1,21 +1,23 @@
 type Artist {
-    id: ID!
-    artistName: String
-    artistGenreId: ID!
+  id: ID!
+  artistName: String
+  artistImageUrl: String
+  artistGenreId: ID!
 }
 
 type ArtistInput {
-    id: ID,
-    artistName: String
-    artistGenreId: ID
+  id: ID
+  artistName: String
+  artistImageUrl: String
+  artistGenreId: ID
 }
 
 type Genre {
-    id: ID!
-    genreName: String
+  id: ID!
+  genreName: String
 }
 
-type Query{
-    getArtists:[Artist]
-    getGenres:[Genre]
+type Query {
+  getArtists: [Artist]
+  getGenres: [Genre]
 }

@@ -1,6 +1,7 @@
 package com.afrobeatslib.musicApi.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import lombok.Data;
@@ -19,19 +20,22 @@ public class Artist {
     private UUID id;
 
     private String artistName;
+    private String artistImageUrl;
     private int artistGenreId;
 
     public Artist(){
 
     }
-    public Artist(String artistName, int artistGenreId){
+    public Artist(String artistName, String artistImageUrl, int artistGenreId){
         this.artistName = artistName;
+        this.artistImageUrl = artistImageUrl;
         this.artistGenreId = artistGenreId;
     }
 
-    public Artist(UUID id, String artistName, int artistGenreId){
+    public Artist(UUID id, String artistName, String artistImageUrl, int artistGenreId){
         this.id = id;
         this.artistName = artistName;
+        this.artistImageUrl = artistImageUrl;
         this.artistGenreId = artistGenreId;
     }
 
@@ -51,6 +55,14 @@ public class Artist {
         this.artistName = newName;
     }
 
+    public String getArtistImageUrl(){
+        return this.artistImageUrl;
+    }
+
+    public void setArtistImageUrl(String newArtistImageUrl){
+        this.artistImageUrl = newArtistImageUrl;
+    }
+
     public int getArtistGenreId(){
         return this.artistGenreId;
     }
@@ -62,8 +74,8 @@ public class Artist {
     @Override
     public String toString(){
         return String.format(
-                "Artist {id=%s , artistName=%s, artistGenre=%s}",
-                id, artistName, artistGenreId
+                "Artist {id=%s , artistName=%s, artistImageUrl=%s, artistGenre=%s}",
+                id, artistName, artistImageUrl, artistGenreId
         );
     }
 }

@@ -5,7 +5,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import lombok.Data;
 
-import java.util.UUID;
 
 @Entity
 @Data

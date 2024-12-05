@@ -1,19 +1,20 @@
 package com.afrobeatslib.musicApi.dto;
 
-import java.util.UUID;
 
 public class ArtistInputDto {
     String id;
     String artistName;
+    String artistImageUrl;
     int artistGenreId;
 
     public ArtistInputDto(){
 
     }
 
-    public ArtistInputDto(String id, String artistName, int artistGenreId){
+    public ArtistInputDto(String id, String artistName, String artistImageUrl, int artistGenreId){
         this.id = id;
         this.artistName = artistName;
+        this.artistImageUrl = artistImageUrl;
         this.artistGenreId = artistGenreId;
     }
 
@@ -31,6 +32,14 @@ public class ArtistInputDto {
 
     public void setArtistName(String newArtistName){
         this.artistName = newArtistName;
+    }
+
+    public String getArtistImageUrl(){
+        return this.artistImageUrl;
+    }
+
+    public void setArtistImageUrl(String newArtistImageUrl){
+        this.artistImageUrl = newArtistImageUrl;
     }
 
     public int getArtistGenreId(){

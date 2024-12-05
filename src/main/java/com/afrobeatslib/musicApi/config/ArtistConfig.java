@@ -17,16 +17,19 @@ public class ArtistConfig {
             Artist felaKuti = new Artist(
                     UUID.randomUUID(),
                     "Fela Kuti",
+                    "https://afrobeatbucket.s3.eu-west-1.amazonaws.com/artist_images/fela-kuti.webp",
                     1
             );
             Artist burnaBoy = new Artist(
                     UUID.randomUUID(),
                     "Burna Boy",
+                    "https://afrobeatbucket.s3.eu-west-1.amazonaws.com/artist_images/burna-boy.webp",
                     2
             );
             Artist ayraStarr = new Artist(
                     UUID.randomUUID(),
                     "Ayra Starr",
+                    "https://afrobeatbucket.s3.eu-west-1.amazonaws.com/artist_images/ayra-starr.webp",
                     4
             );
 
