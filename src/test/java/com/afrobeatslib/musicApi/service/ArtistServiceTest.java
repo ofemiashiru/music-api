@@ -82,8 +82,6 @@ class ArtistServiceTest {
         });
 
         List<ArtistDto> actual = mockArtistService.getArtists();
-
-        System.out.println(actual);
         
         assertNotNull(actual);
         assertEquals(expectedArtists.size(), actual.size());
