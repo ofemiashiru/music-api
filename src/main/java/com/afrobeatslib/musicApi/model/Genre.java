@@ -1,13 +1,16 @@
 package com.afrobeatslib.musicApi.model;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
-import lombok.Data;
 
 
 @Entity
-@Data
 public class Genre {
     @Id
     @SequenceGenerator(
@@ -17,6 +20,9 @@ public class Genre {
     )
     private int id;
     private String genreName;
+
+    @ManyToMany(mappedBy="genres")
+    private Set<Artist> artists = new TreeSet<>();
 
     public Genre(){
 
@@ -41,6 +47,14 @@ public class Genre {
 
     public void setGenreName(String newGenreName){
         this.genreName = newGenreName;
+    }
+
+    public Set<Artist> getArtists() {
+        return artists;
+    }
+
+    public void setArtists(Set<Artist> artists) {
+        this.artists = artists;
     }
 
 
