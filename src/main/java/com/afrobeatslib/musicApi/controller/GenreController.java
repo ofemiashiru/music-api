@@ -2,7 +2,6 @@ package com.afrobeatslib.musicApi.controller;
 
 import com.afrobeatslib.musicApi.model.Genre;
 import com.afrobeatslib.musicApi.service.GenreService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
@@ -13,7 +12,6 @@ public class GenreController {
 
     GenreService genreService;
 
-    @Autowired
     public GenreController(GenreService genreService){
         this.genreService = genreService;
     }

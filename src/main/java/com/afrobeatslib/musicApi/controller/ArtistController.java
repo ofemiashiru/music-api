@@ -2,7 +2,6 @@ package com.afrobeatslib.musicApi.controller;
 
 import com.afrobeatslib.musicApi.dto.ArtistDto;
 import com.afrobeatslib.musicApi.service.ArtistService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
@@ -13,7 +12,6 @@ public class ArtistController {
 
     private ArtistService artistService;
 
-    @Autowired
     public ArtistController(ArtistService artistService){
         this.artistService = artistService;
     }
