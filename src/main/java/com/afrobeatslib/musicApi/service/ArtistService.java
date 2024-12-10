@@ -38,4 +38,16 @@ public class ArtistService {
 
         return artistMapper.toDto(artist);
     }
+
+    public boolean deleteArtist(UUID id){
+        Artist artist = artistRepository.findById(id).orElse(null);
+
+        if(artist == null){
+            throw new IllegalStateException("Does not exist");
+        }
+
+        artistRepository.deleteById(id);
+        return true;
+
+    }
 }

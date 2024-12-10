@@ -22,3 +22,7 @@ type Query {
   getArtist(id: ID!): Artist
   getGenres: [Genre]
 }
+
+type Mutation {
+  deleteArtist(id: ID!): Boolean
+}
