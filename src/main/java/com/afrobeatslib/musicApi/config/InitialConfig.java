@@ -68,14 +68,14 @@ public class InitialConfig {
             Artist felaKuti = new Artist(
                 UUID.randomUUID(),
                 "Fela Kuti",
-                "https://afrobeatbucket.s3.eu-west-1.amazonaws.com/artist_images/fela-kuti.webp"
+                "https://demopractice.blob.core.windows.net/images/placeholder-user-profile.jpg"
             );
             felaKuti.addGenre(afrobeat);
 
             Artist burnaBoy = new Artist(
                 UUID.randomUUID(),
                 "Burna Boy",
-                "https://afrobeatbucket.s3.eu-west-1.amazonaws.com/artist_images/burna-boy.webp"
+                "https://demopractice.blob.core.windows.net/images/placeholder-user-profile.jpg"
             );
             burnaBoy.addGenre(afrobeats);
             burnaBoy.addGenre(afrofusion);
@@ -83,7 +83,7 @@ public class InitialConfig {
             Artist ayraStarr = new Artist(
                 UUID.randomUUID(),
                 "Ayra Starr",
-                "https://afrobeatbucket.s3.eu-west-1.amazonaws.com/artist_images/ayra-starr.webp"
+                "https://demopractice.blob.core.windows.net/images/placeholder-user-profile.jpg"
             );
             ayraStarr.addGenre(afropop);
             ayraStarr.addGenre(afrobeats);
