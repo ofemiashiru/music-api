@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -37,8 +38,10 @@ class ArtistServiceTest {
         Genre afrobeats = new Genre(2, "Dancehall");
         Genre hiphop = new Genre(3, "Hip-Hop");
 
+        UUID fixedIdUuid = UUID.fromString("9137349e-394b-452e-8485-003511958147");
+
         Artist artistOne = new Artist(
-                UUID.randomUUID(),
+                fixedIdUuid,
                 "New Artist 1",
                 "UrlOfArtistImage1"
         );
@@ -88,6 +91,29 @@ class ArtistServiceTest {
                 assertEquals(expectedArtists.get(i).getArtistName(), actual.get(i).getArtistName());
         }
 
+    }
+
+    @DisplayName("Test that I can get an artist back by id successfully")
+    @Test
+    void testThatAnArtistIsReturnedById(){
+
+        UUID artistId = UUID.fromString("9137349e-394b-452e-8485-003511958147");
+        Optional<Artist> expectedArtist = Optional.ofNullable(expectedArtists.get(0));
+
+        when(mockArtistRepository.findById(artistId)).thenReturn(expectedArtist);
+        when(mockArtistMapper.toDto(any(Artist.class))).thenReturn(
+            new ArtistDto(
+                expectedArtist.get().getId(),
+                expectedArtist.get().getArtistName(),
+                expectedArtist.get().getArtistImageUrl(),
+                expectedArtist.get().getArtistGenres()
+            )
+        );
+        
+        ArtistDto actualArtist = mockArtistService.getArtist(artistId);
+        assertNotNull(actualArtist);
+        assertEquals(expectedArtist.get().getId(), actualArtist.getId());
+        
     }
 
 }

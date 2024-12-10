@@ -19,5 +19,6 @@ type Genre {
 
 type Query {
   getArtists: [Artist]
+  getArtist(id: ID!): Artist
   getGenres: [Genre]
 }
