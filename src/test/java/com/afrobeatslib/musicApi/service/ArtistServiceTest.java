@@ -16,7 +16,9 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 class ArtistServiceTest {
@@ -116,4 +118,21 @@ class ArtistServiceTest {
         
     }
 
+    @DisplayName("Test that artist is deleted successfully")
+    @Test
+    void testThatASingleArtistIsDeleted() throws IllegalStateException{
+        UUID artistUuid = UUID.fromString("9137349e-394b-452e-8485-003511958147");
+
+        when(mockArtistRepository.findById(artistUuid))
+        .thenReturn(
+            expectedArtists.stream().filter(artist -> artist.getId().equals(artistUuid)).findFirst()
+        );
+
+        boolean artistIsDeleted = mockArtistService.deleteArtist(artistUuid);
+
+        verify(mockArtistRepository).deleteById(artistUuid);
+
+        assertTrue(artistIsDeleted);
+        
+    }
 }
