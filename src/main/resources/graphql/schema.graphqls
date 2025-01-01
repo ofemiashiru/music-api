@@ -5,11 +5,14 @@ type Artist {
   genres: [Genre]
 }
 
-type ArtistInput {
-  id: ID
+input ArtistInput {
   artistName: String
   artistImageUrl: String
-  genres: [Genre]
+  genres: [GenreArtistInput]
+}
+
+input GenreArtistInput {
+  id: ID!
 }
 
 type Genre {
@@ -17,12 +20,23 @@ type Genre {
   genreName: String
 }
 
+input GenreInput {
+  genreName: String
+}
+
 type Query {
+  # Artist
   getArtists: [Artist]
   getArtist(id: ID!): Artist
+  # Genre
   getGenres: [Genre]
 }
 
 type Mutation {
+  # Artist
+  addArtist(artistData: ArtistInput): Artist
   deleteArtist(id: ID!): Boolean
+  # Genre
+  addGenre(genreData: GenreInput): Genre
+  deleteGenre(id: ID!): Boolean
 }
