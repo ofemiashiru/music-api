@@ -1,4 +1,5 @@
 package com.afrobeatslib.musicApi.service;
+
 import com.afrobeatslib.musicApi.mapper.ArtistMapper;
 import com.afrobeatslib.musicApi.model.Artist;
 import com.afrobeatslib.musicApi.model.Genre;
@@ -24,16 +25,15 @@ class ArtistServiceTest {
 
     private ArtistMapper mockArtistMapper;
     private ArtistRepository mockArtistRepository;
-    private ArtistService mockArtistService; 
+    private ArtistService mockArtistService;
 
     private List<Artist> expectedArtists;
 
-
     @BeforeEach
-    void setUp(){
+    void setUp() {
         mockArtistMapper = mock(ArtistMapper.class);
         mockArtistRepository = mock(ArtistRepository.class);
-        mockArtistService = new ArtistService(mockArtistRepository, mockArtistMapper); 
+        mockArtistService = new ArtistService(mockArtistRepository, mockArtistMapper);
 
         Genre afrobeat = new Genre(1, "Afrobeat");
         Genre afrobeats = new Genre(2, "Dancehall");
@@ -44,22 +44,19 @@ class ArtistServiceTest {
         Artist artistOne = new Artist(
                 fixedIdUuid,
                 "New Artist 1",
-                "UrlOfArtistImage1"
-        );
+                "UrlOfArtistImage1");
         artistOne.addGenre(hiphop);
 
         Artist artistTwo = new Artist(
                 UUID.randomUUID(),
                 "New Artist 2",
-                "UrlOfArtistImage2"
-        );
+                "UrlOfArtistImage2");
         artistTwo.addGenre(afrobeat);
 
         Artist artistThree = new Artist(
                 UUID.randomUUID(),
                 "New Artist 3",
-                "UrlOfArtistImage3"
-        );
+                "UrlOfArtistImage3");
         artistThree.addGenre(afrobeats);
 
         expectedArtists = new ArrayList<>();
@@ -70,68 +67,64 @@ class ArtistServiceTest {
 
     @DisplayName("Test that all artists are returned")
     @Test
-    void testThatArtistsAreReturned(){
+    void testThatArtistsAreReturned() {
 
         when(mockArtistRepository.findAll()).thenReturn(expectedArtists);
         when(mockArtistMapper.toDto(any(Artist.class))).thenAnswer(invocation -> {
             Artist artist = invocation.getArgument(0);
             return new ArtistDto(
-                artist.getId(),
-                artist.getArtistName(),
-                artist.getArtistImageUrl(),
-                artist.getArtistGenres()
-            );
+                    artist.getId(),
+                    artist.getArtistName(),
+                    artist.getArtistImageUrl(),
+                    artist.getGenres());
         });
 
         List<ArtistDto> actual = mockArtistService.getArtists();
-        
+
         assertNotNull(actual);
         assertEquals(expectedArtists.size(), actual.size());
-        
-        for(int i = 0; i < actual.size(); i++){
-                assertEquals(expectedArtists.get(i).getArtistName(), actual.get(i).getArtistName());
+
+        for (int i = 0; i < actual.size(); i++) {
+            assertEquals(expectedArtists.get(i).getArtistName(), actual.get(i).getArtistName());
         }
 
     }
 
     @DisplayName("Test that I can get an artist back by id successfully")
     @Test
-    void testThatAnArtistIsReturnedById(){
+    void testThatAnArtistIsReturnedById() {
 
         UUID artistId = UUID.fromString("9137349e-394b-452e-8485-003511958147");
         Optional<Artist> expectedArtist = Optional.ofNullable(expectedArtists.get(0));
 
         when(mockArtistRepository.findById(artistId)).thenReturn(expectedArtist);
         when(mockArtistMapper.toDto(any(Artist.class))).thenReturn(
-            new ArtistDto(
-                expectedArtist.get().getId(),
-                expectedArtist.get().getArtistName(),
-                expectedArtist.get().getArtistImageUrl(),
-                expectedArtist.get().getArtistGenres()
-            )
-        );
-        
+                new ArtistDto(
+                        expectedArtist.get().getId(),
+                        expectedArtist.get().getArtistName(),
+                        expectedArtist.get().getArtistImageUrl(),
+                        expectedArtist.get().getGenres()));
+
         ArtistDto actualArtist = mockArtistService.getArtist(artistId);
         assertNotNull(actualArtist);
         assertEquals(expectedArtist.get().getId(), actualArtist.getId());
-        
+
     }
 
     @DisplayName("Test that artist is deleted successfully")
     @Test
-    void testThatASingleArtistIsDeleted() throws IllegalStateException{
+    void testThatASingleArtistIsDeleted() throws IllegalStateException {
         UUID artistUuid = UUID.fromString("9137349e-394b-452e-8485-003511958147");
 
         when(mockArtistRepository.findById(artistUuid))
-        .thenReturn(
-            expectedArtists.stream().filter(artist -> artist.getId().equals(artistUuid)).findFirst()
-        );
+                .thenReturn(
+                        expectedArtists.stream().filter(artist -> artist.getId().equals(artistUuid)).findFirst());
 
         boolean artistIsDeleted = mockArtistService.deleteArtist(artistUuid);
 
         verify(mockArtistRepository).deleteById(artistUuid);
 
         assertTrue(artistIsDeleted);
-        
+
     }
 }

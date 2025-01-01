@@ -54,4 +54,13 @@ public class ArtistDto {
     public void setArtistGenres(Set<Genre> newGenres) {
         this.genres = newGenres;
     }
+
+    public void addGenre(Genre genreToAdd){
+        this.genres.add(genreToAdd);
+    }
+
+    public void removeGenre(Genre genreToRemove){
+        this.genres.remove(genreToRemove);
+    }
+
 }

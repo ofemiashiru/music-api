@@ -6,7 +6,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
-import lombok.Data;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -80,11 +79,11 @@ public class Artist {
         this.artistImageUrl = newArtistImageUrl;
     }
 
-    public Set<Genre> getArtistGenres(){
+    public Set<Genre> getGenres(){
         return this.genres;
     }
 
-    public void setArtistGenres(Set<Genre> newArtistGenres){
+    public void setGenres(Set<Genre> newArtistGenres){
         this.genres = newArtistGenres;
     }
 
