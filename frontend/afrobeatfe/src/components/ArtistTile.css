@@ -1,0 +1,12 @@
+.artist-tile {
+  margin: 5px;
+}
+
+h2 {
+  position: absolute;
+  top: 100px;
+}
+
+img {
+  width: 300px;
+}
